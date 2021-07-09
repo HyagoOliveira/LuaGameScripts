@@ -1,0 +1,18 @@
+# exclude everything
+*
+
+# except
+!.gitignore
+!KeyboardInput.lua
+!MemoryAddress.lua
+!middleclass.lua
+!Rect.lua
+!Vector2.lua
+
+!SNES/
+!SNES/MegaMan/
+!SNES/MegaMan/*.lua
+
+!PSX/
+!PSX/MegaMan/
+!PSX/MegaMan/*.lua
