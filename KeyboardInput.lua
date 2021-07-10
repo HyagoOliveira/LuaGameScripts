@@ -13,7 +13,7 @@ KeyboardInput.static.BUTTON = {
     selectBackgroundColor = 0xFF343A40,
     font = {
         backcolor = "black",
-        fontsize = 14,
+        fontsize = 12,
         fontfamily = "Cambria",
         fontstyle = "Normal"
     },
@@ -75,7 +75,7 @@ function KeyboardInput:isMousePositionOverRect(rect)
 end
 
 function KeyboardInput:isButtonDown(area, text, color)
-    local textPos = area:getBottomLeft() + Vector2:new(4, 2)
+    local textPos = area:getTopLeft() + Vector2:new(1, 1)
     local isMouseOver = self:isMousePositionOverRect(area)
     local backgroundColor = KeyboardInput.BUTTON.normalBackgroundColor
 
