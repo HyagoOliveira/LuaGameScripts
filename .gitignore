@@ -8,6 +8,7 @@
 !middleclass.lua
 !Rect.lua
 !Vector2.lua
+!README.md
 
 !SNES/
 !SNES/MegaMan/
@@ -16,3 +17,6 @@
 !PSX/
 !PSX/MegaMan/
 !PSX/MegaMan/*.lua
+
+!~Doc/
+!~Doc/*
