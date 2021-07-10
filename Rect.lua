@@ -12,8 +12,11 @@ function Rect:initialize(center, size)
     self.size = size or Vector2:new(1, 1)
 end
 
-function Rect:fromLeftBottom(leftBottom, size)
-    local center = leftBottom + size * 0.5
+function Rect:from(x, y, width, height)
+    local topLeft = Vector2:new(x, y)
+    local size = Vector2:new(width, height)
+    local center = topLeft + size * 0.5
+
     return Rect:new(center, size)
 end
 
@@ -59,10 +62,11 @@ function Rect:getBottomRight()
 end
 
 function Rect:isInside(position)
-    local bottomLeft = self:getBottomLeft()
-    local topRight = self:getTopRight()
-    local insideFromLeft = position.x > bottomLeft.x and position.y > bottomLeft.y
-    local insideFromRight = position.x < topRight.x and position.y < topRight.y
+    local topLeft = self:getTopLeft()
+    local bottomRight = self:getBottomRight()
+    local insideFromLeft = position.x > topLeft.x and position.y > topLeft.y
+    local insideFromRight = position.x < bottomRight.x and position.y < bottomRight.y
+
     return insideFromLeft and insideFromRight
 end
 
