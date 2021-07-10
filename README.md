@@ -21,9 +21,12 @@ You can see the hitboxes from the Player, enemies and its items.
 
 ## Usage
 
-1. Open your game
-2. Go to Tools > Lua Console.
-3. Go to Scripts > Open Script and select the script from the game
+1. Open your game;
+2. Go to Tools > Lua Console;
+3. Click on Scripts > Open Script;
+4. Go to the folder where you past the scripts from this repo and select the one from the game you load.
+
+eg: `/Lua/SNES/MegaManX.lua` for Mega Man X, X2 or X3
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
