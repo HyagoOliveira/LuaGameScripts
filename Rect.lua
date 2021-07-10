@@ -22,8 +22,8 @@ function Rect:log()
 end
 
 function Rect:draw(lineColor, backgroundColor)
-    local bottomLeft = self:getBottomLeft()
-    gui.drawRectangle(bottomLeft.x, bottomLeft.y, self.size.x, self.size.y, lineColor, backgroundColor)
+    local topLeft = self:getTopLeft()
+    gui.drawRectangle(topLeft.x, topLeft.y, self.size.x, self.size.y, lineColor, backgroundColor)
 end
 
 function Rect:move(position)
@@ -38,12 +38,24 @@ function Rect:getHalfSize()
     return self.size * 0.5
 end
 
+function Rect:getTopLeft()
+    return self.center - self:getHalfSize()
+end
+
 function Rect:getTopRight()
-    return self.center + self:getHalfSize()
+    local halfSize = self:getHalfSize()
+    halfSize.y = -halfSize.y
+    return self.center + halfSize
 end
 
 function Rect:getBottomLeft()
-    return self.center - self:getHalfSize()
+    local halfSize = self:getHalfSize()
+    halfSize.y = -halfSize.y
+    return self.center - halfSize
+end
+
+function Rect:getBottomRight()
+    return self.center + self:getHalfSize()
 end
 
 function Rect:isInside(position)
