@@ -30,7 +30,7 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator.
 
 *Red AABB are for damager colliders (boxes able to inflict damage).*
 
-![alt text](/~Doc/mmx5-aabb-x.png)
+![alt text](/~Doc/mmx5-aabb-x.jpg)
 
 *Green AABB are for damageable colliders (boxes able to receive damage).*
 
