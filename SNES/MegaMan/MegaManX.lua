@@ -107,7 +107,7 @@ local hasGameAddress = gameAddress ~= nil
 
 if not hasGameAddress then
     console.log("This script is not compatible with this game.")
-    console.log("You have to load Mega Man X, Mega Man X2 or Mega Man X3 (USA) from SNES.")
+    console.log("You have to load Mega Man X (USA), Mega Man X2 (USA) or Mega Man X3 (USA) from SNES.")
     return
 end
 

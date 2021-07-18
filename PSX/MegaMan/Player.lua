@@ -6,7 +6,7 @@ local GameObject = require("GameObject")
 local KeyboardInput = require("KeyboardInput")
 local GameObjectGroup = require("GameObjectGroup")
 
-local Player = class('Player', GameObject)
+local Player = class('Player', GameObject) -- Creating the Player class inheriting from the GameObject class.
 
 function Player:initialize(address)
     GameObject.initialize(self, address.base, "Player")

@@ -1,7 +1,7 @@
 local Rect = require "Rect"
 --
 -- Author: HyagoGow
--- A Mover class used to meve a GameObject
+-- A Mover class used to freealy move a GameObject.
 --
 local Vector2 = require("Vector2")
 local class = require("middleclass")

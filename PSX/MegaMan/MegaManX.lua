@@ -2,25 +2,22 @@
 -- Author: HyagoGow
 -- This Script is for Mega Man X4, Mega Man X5 or Mega Man X6 games from PSOne.
 -- It shows the Axis Aligned Bounding Boxes (AABB) for the player, enemies, bullets and items.
--- Also, it prints some properties next to the player as well as some options.
--- The MEMORY_ADDRESS table informs where to find all necessary variables.
--- Make sure your display is on Pixel Pro Mode (PSX > Options > Pixel Pro Mode)
+-- Also, it prints some properties next to the Game Objects as well as display some options.
+-- The MEMORY_ADDRESS table informs where to find all necessary variables for the games.
+-- Before use this script, make sure your display is on Pixel Pro Mode (PSX > Options > Select Pixel Pro Mode)
 --
--- package.loaded["Camera"] = nil
-package.loaded["Player"] = nil
-
 local Camera = require("Camera")
 local Player = require("Player")
 local KeyboardInput = require("KeyboardInput")
 local GameObjectGroup = require("GameObjectGroup")
 
 local MEMORY_ADDRESS = {
-    ["Mega Man X4 (USA)"] = {
+    ["Mega Man X4 (USA)"] = { -- Those addresses are for the american version of Mega Man X4.
         camera = {
-            base = 0x1419B0 -- camera object table
+            base = 0x1419B0 -- camera object table.
         },
         player = {
-            base = 0x1418C8, -- player object table
+            base = 0x1418C8, -- player object table.
             damage = {
                 base = 0x1406F8, -- If a player damage item is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
@@ -40,12 +37,12 @@ local MEMORY_ADDRESS = {
             }
         }
     },
-    ["Mega Man X5 (USA)"] = {
+    ["Mega Man X5 (USA)"] = { -- Those addresses are for the american version of Mega Man X5.
         camera = {
-            base = 0x09A2A0 -- camera object table
+            base = 0x09A2A0 -- camera object table.
         },
         player = {
-            base = 0x09A0A0, -- player object table
+            base = 0x09A0A0, -- player object table.
             damage = {
                 base = 0x098120, -- If a player damage item is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
@@ -65,7 +62,7 @@ local MEMORY_ADDRESS = {
             }
         }
     },
-    ["Mega Man X6 (USA) (v1.1)"] = {
+    ["Mega Man X6 (USA)"] = { -- Those addresses are for the american version of Mega Man X6.
         camera = {
             base = 0x0971F8 -- camera object table
         },
@@ -95,21 +92,21 @@ local MEMORY_ADDRESS = {
 local game = gameinfo.getromname()
 local address = MEMORY_ADDRESS[game]
 local hasAddress = address ~= nil
-local gameMessage = string.format("Script successfully running for '%s'", game)
-console.clear()
-console.log(gameMessage)
 
+console.clear()
 if not hasAddress then
     console.log("This script is not compatible with this game.")
-    console.log("You have to load Mega Man X4, Mega Man X5 or Mega Man X6 (USA) (v1.1) from PSOne.")
+    console.log("You have to load a PSOne game file named as Mega Man X4 (USA), Mega Man X5 (USA) or Mega Man X6 (USA).")
     return
 end
 
-local keyboard = KeyboardInput:new() -- Instantialing the KeyboardInput class.
-local player = Player:new(address.player) -- Instantialing the Player class.
-local camera = Camera:new(address.camera.base) -- Instantialing the Camera class.
-local enemiesGroup = GameObjectGroup:new("Enemy", address.enemy.group) -- Instantialing the GameObjectGroup class for the enemy group.
-local enemyItemsGroup = GameObjectGroup:new("Enemy Item", address.enemy.items) -- Instantialing the GameObjectGroup class for the enemy items.
+console.log(string.format("Script successfully running for '%s'", game))
+
+local keyboard = KeyboardInput:new() -- Instantiating the KeyboardInput class.
+local player = Player:new(address.player) -- Instantiating the Player class.
+local camera = Camera:new(address.camera.base) -- Instantiating the Camera class.
+local enemiesGroup = GameObjectGroup:new("Enemy", address.enemy.group) -- Instantiating the GameObjectGroup class for the enemy group.
+local enemyItemsGroup = GameObjectGroup:new("Enemy Item", address.enemy.items) -- Instantiating the GameObjectGroup class for the enemy items.
 
 while true do
     keyboard:update()
