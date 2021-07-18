@@ -15,8 +15,8 @@ GameObject.static.TEXT_HEIGHT = 20
 
 function GameObject:initialize(address, name)
     -- Memory addresses found by DarkSamus. Thanks!
-    self.enabled = MemoryAddress:new("Bool", address)
     self.id = MemoryAddress:new("Int", address + 0x02)
+    self.show = MemoryAddress:new("Bool", address + 0x03)
     self.state = MemoryAddress:new("Int", address + 0x04)
     self.action = MemoryAddress:new("Int", address + 0x05)
     self.subAction = MemoryAddress:new("Int", address + 0x06)
@@ -43,7 +43,7 @@ end
 
 function GameObject:update()
     self.id:update()
-    self.enabled:update()
+    self.show:update()
     self.state:update()
     self.action:update()
     self.subAction:update()
