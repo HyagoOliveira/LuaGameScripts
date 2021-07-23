@@ -34,7 +34,7 @@ function GameObjectGroup:draw()
 end
 
 function GameObjectGroup:drawToggleShowPropertyButton(label, x, y, width, height)
-    local toggle = KeyboardInput.INSTANCE:isToggleButtonDown(label, self.showProperties, x, y, width, height)
+    local toggle = KeyboardInput.INSTANCE:isShowHideButtonDown(label, self.showProperties, x, y, width, height)
     if toggle then
         self:toggleShowProperties()
     end

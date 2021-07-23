@@ -123,17 +123,13 @@ while true do
     enemiesGroup:draw()
     enemyItemsGroup:draw()
 
-    player:printProperties(0, 330)
-    camera:printPosition(0, 460)
+    player:printProperties(2, 330)
+    camera:printPosition(2, 460)
 
     camera:showOptions(680, 0)
-    --[[player:drawOptions(680, 40)
+    player:drawOptions(680, 120)
 
-    gui.drawText(680, 0, "Manual Movement")
-    camera.manualMover:drawToggleButton("Camera", 680, 20, 50, 16)
-    player.manualMover:drawToggleButton("Player", 740, 20, 50, 16)
-
-
+    --[[
     gui.drawText(680, 120, "Show Properties")
     enemiesGroup:drawToggleShowPropertyButton("Enemies", 680, 140, 100)
     enemyItemsGroup:drawToggleShowPropertyButton("Enemies Items", 680, 160, 100)
