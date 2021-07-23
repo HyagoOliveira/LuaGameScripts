@@ -100,7 +100,7 @@ function MemoryAddress:print(x, y, label)
     local text = string.format("%s: %s", label, tostring(self.value))
     local color = self:getTextColor()
     -- Draws on the screen at the given coordinates.
-    gui.text(x, y, text, color)
+    gui.drawText(x, y, text, color)
 end
 
 function MemoryAddress:toggleFreeze()
