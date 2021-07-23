@@ -26,19 +26,13 @@ function Player:draw() -- Overriding the GameObject:draw() function.
 end
 
 function Player:drawOptions(x, y)
-    local pos = Vector2:new(x, y)
-    local lifeArea = Rect:from(x, y + 20, 50, 16)
-    local posArea = Rect:from(x + 60, y + 20, 50, 16)
-    local gravityArea = Rect:from(x, y + 40, 50, 16)
-    local speedArea = Rect:from(x + 60, y + 40, 50, 16)
+    gui.drawText(x, y, "Player Options")
 
-    gui.drawText(pos.x, pos.y, "Player Options")
-
-    local toggleLife = KeyboardInput.INSTANCE:isToggleButtonDown(lifeArea, "Life", self.health.frozen)
-    local togglePos = KeyboardInput.INSTANCE:isToggleButtonDown(posArea, "Position", self.position.frozen)
-    local toggleGravity = KeyboardInput.INSTANCE:isToggleButtonDown(gravityArea, "Gravity", self.gravity.frozen)
-    local toggleSpeed = KeyboardInput.INSTANCE:isToggleButtonDown(speedArea, "Speed", self.speed.frozen)
-    self.damageGroup:drawToggleShowPropertyButton(x, y + 60, 110, 16, "Damage Items")
+    local toggleLife = KeyboardInput.INSTANCE:isToggleButtonDown("Life", self.health.frozen, x, y + 20)
+    local togglePos = KeyboardInput.INSTANCE:isToggleButtonDown("Position", self.position.frozen, x + 60, y + 20)
+    local toggleGravity = KeyboardInput.INSTANCE:isToggleButtonDown("Gravity", self.gravity.frozen, x, y + 40)
+    local toggleSpeed = KeyboardInput.INSTANCE:isToggleButtonDown("Speed", self.speed.frozen, x + 60, y + 40)
+    self.damageGroup:drawToggleShowPropertyButton("Damage Items", x, y + 60, 110)
 
     if toggleLife then
         self.health:toggleFreeze()

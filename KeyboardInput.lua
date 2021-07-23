@@ -2,25 +2,19 @@
 -- Author: HyagoGow
 -- A Keyboard Input reader class.
 --
+local Rect = require("Rect")
 local Vector2 = require("Vector2")
 local class = require("middleclass")
 
 local KeyboardInput = class('KeyboardInput') -- Creating the KeyboardInput class.
 
 KeyboardInput.static.BUTTON = {
+    defaultSize = Vector2:new(50, 16),
     lineColor = 0xFF6C757D,
     normalBackgroundColor = 0xFF6C757D,
     selectBackgroundColor = 0xFF343A40,
-    font = {
-        backcolor = "black",
-        fontsize = 12,
-        fontfamily = "Cambria",
-        fontstyle = "Normal"
-    },
-    toggle = {
-        normal = "white",
-        select = "violet"
-    }
+    font = {backcolor = "black", fontsize = 12, fontfamily = "Cambria", fontstyle = "Normal"},
+    toggle = {normal = "white", select = "violet"}
 }
 
 function KeyboardInput:initialize()
@@ -74,7 +68,11 @@ function KeyboardInput:isMousePositionOverRect(rect)
     return rect:isInside(self:getMousePosition())
 end
 
-function KeyboardInput:isButtonDown(area, text, color)
+function KeyboardInput:isButtonDown(text, x, y, width, height, color)
+    width = width or KeyboardInput.BUTTON.defaultSize.x
+    height = height or KeyboardInput.BUTTON.defaultSize.y
+
+    local area = Rect:from(x, y, width, height)
     local textPos = area:getTopLeft() + Vector2:new(1, 1)
     local isMouseOver = self:isMousePositionOverRect(area)
     local backgroundColor = KeyboardInput.BUTTON.normalBackgroundColor
@@ -84,19 +82,30 @@ function KeyboardInput:isButtonDown(area, text, color)
     end
 
     area:draw(KeyboardInput.BUTTON.lineColor, backgroundColor)
-    gui.drawText(textPos.x, textPos.y, text, color, KeyboardInput.BUTTON.font.backcolor,
-        KeyboardInput.BUTTON.font.fontsize, KeyboardInput.BUTTON.font.fontfamily, KeyboardInput.BUTTON.font.fontstyle)
+    gui.drawText(
+        textPos.x, textPos.y, text, color, KeyboardInput.BUTTON.font.backcolor, KeyboardInput.BUTTON.font.fontsize,
+        KeyboardInput.BUTTON.font.fontfamily, KeyboardInput.BUTTON.font.fontstyle
+    )
 
     return isMouseOver and self:isMouseLeftButtonDown()
 end
 
-function KeyboardInput:isToggleButtonDown(area, text, enabled)
+function KeyboardInput:isToggleButtonDown(text, enabled, x, y, width, height)
     local color = KeyboardInput.BUTTON.toggle.normal
     if enabled then
         color = KeyboardInput.BUTTON.toggle.select
     end
 
-    return self:isButtonDown(area, text, color)
+    return self:isButtonDown(text, x, y, width, height, color)
+end
+
+function KeyboardInput:isShowHideButtonDown(label, enabled, x, y, width, height)
+    local text = "Show " .. label
+    if enabled then
+        text = "Hide " .. label
+    end
+
+    return self:isButtonDown(text, x, y, width, height)
 end
 
 function KeyboardInput:getMousePosition()

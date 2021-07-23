@@ -6,6 +6,8 @@
 -- The MEMORY_ADDRESS table informs where to find all necessary variables for the games.
 -- Before use this script, make sure your display is on Pixel Pro Mode (PSX > Options > Select Pixel Pro Mode)
 --
+package.loaded["Camera"] = nil
+
 local Camera = require("Camera")
 local Player = require("Player")
 local KeyboardInput = require("KeyboardInput")
@@ -14,7 +16,8 @@ local GameObjectGroup = require("GameObjectGroup")
 local MEMORY_ADDRESS = {
     ["Mega Man X4 (USA)"] = { -- Those addresses are for the american version of Mega Man X4.
         camera = {
-            base = 0x1419B0 -- camera object table.
+            base = 0x1419B0, -- camera object table.
+            hud = 0x1776A7
         },
         player = {
             base = 0x1418C8, -- player object table.
@@ -39,7 +42,8 @@ local MEMORY_ADDRESS = {
     },
     ["Mega Man X5 (USA)"] = { -- Those addresses are for the american version of Mega Man X5.
         camera = {
-            base = 0x09A2A0 -- camera object table.
+            base = 0x09A2A0, -- camera object table.
+            hud = 0x1776A7
         },
         player = {
             base = 0x09A0A0, -- player object table.
@@ -64,7 +68,8 @@ local MEMORY_ADDRESS = {
     },
     ["Mega Man X6 (USA)"] = { -- Those addresses are for the american version of Mega Man X6.
         camera = {
-            base = 0x0971F8 -- camera object table
+            base = 0x0971F8, -- camera object table
+            hud = 0x0CCEEF
         },
         player = {
             base = 0x0970A0, -- player object table
@@ -104,32 +109,35 @@ console.log(string.format("Script successfully running for '%s'", game))
 
 local keyboard = KeyboardInput:new() -- Instantiating the KeyboardInput class.
 local player = Player:new(address.player) -- Instantiating the Player class.
-local camera = Camera:new(address.camera.base) -- Instantiating the Camera class.
+local camera = Camera:new(address.camera) -- Instantiating the Camera class.
 local enemiesGroup = GameObjectGroup:new("Enemy", address.enemy.group) -- Instantiating the GameObjectGroup class for the enemy group.
 local enemyItemsGroup = GameObjectGroup:new("Enemy Item", address.enemy.items) -- Instantiating the GameObjectGroup class for the enemy items.
 
 while true do
     keyboard:update()
-
     camera:update()
-    camera:printPosition(0, 56)
 
     player:update()
     player:draw()
-    player:printProperties(0, 100)
 
     enemiesGroup:draw()
     enemyItemsGroup:draw()
+
+    player:printProperties(0, 120)
+    camera:printPosition(0, 460)
+
+    camera:showOptions(680, 0)
+    --[[player:drawOptions(680, 40)
 
     gui.drawText(680, 0, "Manual Movement")
     camera.manualMover:drawToggleButton("Camera", 680, 20, 50, 16)
     player.manualMover:drawToggleButton("Player", 740, 20, 50, 16)
 
-    player:drawOptions(680, 40)
 
     gui.drawText(680, 120, "Show Properties")
-    enemiesGroup:drawToggleShowPropertyButton(680, 140, 100, 16, "Enemies")
-    enemyItemsGroup:drawToggleShowPropertyButton(680, 160, 100, 16, "Enemies Items")
+    enemiesGroup:drawToggleShowPropertyButton("Enemies", 680, 140, 100)
+    enemyItemsGroup:drawToggleShowPropertyButton("Enemies Items", 680, 160, 100)
+    ]] --
 
     emu.frameadvance()
 end

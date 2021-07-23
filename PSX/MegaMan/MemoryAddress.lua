@@ -56,7 +56,14 @@ MemoryAddress.static.READ = {
 }
 
 MemoryAddress.static.WRITE = {
-    Bool = mainmemory.write_s8,
+    Bool = function(address, value)
+        if value then
+            value = 1
+        else
+            value = 0
+        end
+        mainmemory.write_s8(address, value)
+    end,
 
     Int = mainmemory.write_u8,
 
