@@ -54,7 +54,7 @@ end
 
 function Camera:showOptions(x, y)
     gui.drawText(x, y, "Camera Options")
-    self.manualMover:drawToggleButton(x, y + 20)
+    self.manualMover:drawToggleButton(x, y + 20, 100)
 
     local toggleHUD = KeyboardInput.INSTANCE:isShowHideButtonDown("HUD", self.hud.value, x, y + 40, 100)
 

@@ -16,7 +16,7 @@ function Mover:initialize(gameObject, speed, buttons)
     self.position = Vector2:new()
     self.velocity = Vector2:new()
     self.gameObject = gameObject
-    self.inputTextPos = Vector2:new(200, 0)
+    self.inputTextPos = Vector2:new(200, 430)
     self.inputText = string.format(
         "Use %s, %s, %s and %s to move the %s.", self.buttons.left, self.buttons.up, self.buttons.down,
         self.buttons.right, tostring(gameObject.name)
@@ -59,8 +59,8 @@ function Mover:getInputDirection()
     return Vector2:new(x, y)
 end
 
-function Mover:drawToggleButton(x, y)
-    local toogle = KeyboardInput.INSTANCE:isToggleButtonDown("Free Movement", self.enabled, x, y, 100)
+function Mover:drawToggleButton(x, y, width)
+    local toogle = KeyboardInput.INSTANCE:isToggleButtonDown("Free Movement", self.enabled, x, y, width)
     if toogle then
         self:toggle()
     end
