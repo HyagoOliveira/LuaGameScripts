@@ -118,9 +118,8 @@ function GameObject:print(label, property)
     self.textPos.y = self.textPos.y + GameObject.TEXT_HEIGHT
 end
 
-function GameObject:printMultiple(label, property)
-    property:print(self.textPos.x, self.textPos.y, label)
-    self.textPos.y = self.textPos.y + GameObject.TEXT_HEIGHT
+function GameObject:toggleVisibility()
+    self.show:write(not self.show.value)
 end
 
 function GameObject:__tostring()

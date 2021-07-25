@@ -32,8 +32,9 @@ function Player:drawOptions(x, y)
     local togglePos = KeyboardInput.INSTANCE:isToggleButtonDown("Position", self.position.frozen, x + 60, y + 20)
     local toggleGravity = KeyboardInput.INSTANCE:isToggleButtonDown("Gravity", self.gravity.frozen, x, y + 40)
     local toggleSpeed = KeyboardInput.INSTANCE:isToggleButtonDown("Speed", self.speed.frozen, x + 60, y + 40)
-    self.manualMover:drawToggleButton(x, y + 60, 110)
-    self.damageGroup:drawToggleShowPropertyButton("Damage Items", x, y + 80, 110)
+    local toggleShow = KeyboardInput.INSTANCE:isShowHideButtonDown("Player", self.show.value, x, y + 60, 110)
+    self.manualMover:drawToggleButton(x, y + 80, 110)
+    self.damageGroup:drawToggleShowPropertyButton("Damage Items", x, y + 100, 110)
 
     if toggleLife then
         self.health:toggleFreeze()
@@ -46,6 +47,9 @@ function Player:drawOptions(x, y)
     end
     if toggleSpeed then
         self.speed:toggleFreeze()
+    end
+    if toggleShow then
+        self:toggleVisibility()
     end
 end
 

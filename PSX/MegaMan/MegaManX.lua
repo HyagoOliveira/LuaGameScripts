@@ -146,8 +146,8 @@ while true do
     camera:showOptions(680, 0)
     player:drawOptions(680, 120)
 
-    DrawEnemyOptions(680, 220)
-    DrawOtherOptions(680, 280)
+    DrawEnemyOptions(680, 240)
+    DrawOtherOptions(680, 300)
 
     emu.frameadvance()
 end
