@@ -133,6 +133,24 @@ function MemoryAddress:getTextColor()
     return MemoryAddress.NORMAL_TEXT_COLOR
 end
 
+function MemoryAddress.static:FreezeAddress(address, value)
+    local code = MemoryAddress:GenerateCheatCode(address, value)
+    client.addcheat(code)
+end
+
+function MemoryAddress.static:UnfreezeAddress(address, value)
+    local code = MemoryAddress:GenerateCheatCode(address, value)
+    client.removecheat(code)
+end
+
+function MemoryAddress.static:GenerateCheatCode(address, value)
+    -- Code format: 30XXXXXX 00YY
+    -- %08x = a hexadecimal number prefixed by 8 zeros
+    --  -> %08  = prefix 8 zeros.
+    --  -> %x   = outputs a hexadecimal number.
+    return string.format("%08x %04x", address, value)
+end
+
 function MemoryAddress:__tostring()
     return string.format("0x%s - %s", bizstring.hex(self.address), tostring(self.value))
 end
