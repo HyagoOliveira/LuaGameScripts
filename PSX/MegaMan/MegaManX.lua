@@ -6,8 +6,6 @@
 -- The MEMORY_ADDRESS table informs where to find all necessary variables for the games.
 -- Before use this script, make sure your display is on Pixel Pro Mode (PSX > Options > Select Pixel Pro Mode)
 --
-package.loaded["Camera"] = nil
-
 local Camera = require("Camera")
 local Player = require("Player")
 local KeyboardInput = require("KeyboardInput")
@@ -117,6 +115,7 @@ function DrawEnemyOptions(x, y)
     gui.drawText(x, y, "Enemy Options")
     enemyItemsGroup:drawToggleShowPropertyButton("Items", x, y + 20, 100)
     enemiesGroup:drawToggleShowPropertyButton("Properties", x, y + 40, 100)
+    enemiesGroup:drawToggleVisibilityButton("All Enemies", x, y + 60, 100)
 end
 
 function DrawOtherOptions(x, y)
@@ -147,7 +146,7 @@ while true do
     player:drawOptions(680, 120)
 
     DrawEnemyOptions(680, 240)
-    DrawOtherOptions(680, 300)
+    DrawOtherOptions(680, 320)
 
     emu.frameadvance()
 end
