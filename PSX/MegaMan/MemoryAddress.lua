@@ -151,6 +151,17 @@ function MemoryAddress.static:GenerateCheatCode(address, value)
     return string.format("%08x %04x", address, value)
 end
 
+function MemoryAddress.static:WriteRange(address, length, value)
+    local values = {}
+    local block = mainmemory.readbyterange(address, length)
+
+    for i, _ in pairs(block) do
+        local a = address + i
+        values[a] = value
+    end
+    mainmemory.writebyterange(values)
+end
+
 function MemoryAddress:__tostring()
     return string.format("0x%s - %s", bizstring.hex(self.address), tostring(self.value))
 end
