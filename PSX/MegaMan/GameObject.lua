@@ -15,9 +15,10 @@ GameObject.static.TEXT_HEIGHT = 20
 
 function GameObject:initialize(address, name)
     -- Memory addresses found by DarkSamus. Thanks!
+    self.baseAddress = address
     self.id = MemoryAddress:new("Int", address + 0x02)
-    self.show = MemoryAddress:new("Bool", address + 0x03)
-    self.state = MemoryAddress:new("Int", address + 0x04)
+    self.visible = MemoryAddress:new("Bool", address + 0x03)
+    self.enabled = MemoryAddress:new("Bool", address + 0x04)
     self.action = MemoryAddress:new("Int", address + 0x05)
     self.subAction = MemoryAddress:new("Int", address + 0x06)
     self.position = MemoryAddress:new("FloatVector", Vector2:new(address + 0x0A, address + 0x0E))
@@ -43,8 +44,8 @@ end
 
 function GameObject:update()
     self.id:update()
-    self.show:update()
-    self.state:update()
+    self.visible:update()
+    self.enabled:update()
     self.action:update()
     self.subAction:update()
     self.facing:update()
@@ -119,7 +120,19 @@ function GameObject:print(label, property)
 end
 
 function GameObject:toggleVisibility()
-    self.show:write(not self.show.value)
+    if self.visible.frozen then
+        self.visible:unfreeze()
+    else
+        self.visible:freezeWith(not self.visible.value)
+    end
+end
+
+function GameObject:toggleEnabled()
+    if self.enabled.frozen then
+        self.enabled:unfreeze()
+    else
+        self.enabled:freezeWith(not self.enabled.value)
+    end
 end
 
 function GameObject:__tostring()
