@@ -20,7 +20,6 @@ function GameObjectGroup:initialize(name, address)
         self:show()
     end
 
-    event.onexit(show)
     event.onloadstate(show)
 end
 
