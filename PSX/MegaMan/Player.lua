@@ -25,6 +25,12 @@ function Player:draw() -- Overriding the GameObject:draw() function.
     self.damageGroup:draw()
 end
 
+function Player:printProperties(x, y) -- Overriding the GameObject:printProperties() function.
+    gui.drawText(x, y, "Player")
+    y = y + GameObject.TEXT_HEIGHT
+    GameObject.printProperties(self, x, y)
+end
+
 function Player:drawOptions(x, y)
     gui.drawText(x, y, "Player Options")
 

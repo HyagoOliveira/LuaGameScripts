@@ -141,7 +141,7 @@ while true do
     enemiesGroup:draw()
     enemyItemsGroup:draw()
 
-    player:printProperties(2, 330)
+    player:printProperties(2, 300)
     camera:printPosition(2, 460)
 
     camera:showOptions(680, 0)
