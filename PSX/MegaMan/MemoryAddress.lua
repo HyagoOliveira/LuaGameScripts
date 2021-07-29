@@ -119,6 +119,7 @@ end
 
 function MemoryAddress:freezeWith(value)
     self.frozen = true
+    self.value = value
     self.frozenValue = value
 end
 
