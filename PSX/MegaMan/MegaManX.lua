@@ -15,7 +15,7 @@ local MEMORY_ADDRESS = {
     ["Mega Man X4 (USA)"] = { -- Those addresses are for the american version of Mega Man X4.
         camera = {
             base = 0x1419B0, -- camera object table.
-            hud = 0x1776A7
+            hud = 0x1776A7 -- wrong
         },
         player = {
             base = 0x1418C8, -- player object table.
@@ -41,7 +41,7 @@ local MEMORY_ADDRESS = {
     ["Mega Man X5 (USA)"] = { -- Those addresses are for the american version of Mega Man X5.
         camera = {
             base = 0x09A1F8, -- camera object table.
-            hud = 0x1776A7
+            hud = 0x1776A7 -- wrong
         },
         player = {
             base = 0x09A0A0, -- player object table.
@@ -99,7 +99,9 @@ local hasAddress = address ~= nil
 console.clear()
 if not hasAddress then
     console.log("This script is not compatible with this game.")
-    console.log("You have to load a PSOne game file named as Mega Man X4 (USA), Mega Man X5 (USA) or Mega Man X6 (USA).")
+    console.log(
+        "You have to load a PSOne game file named as Mega Man X4 (USA), Mega Man X5 (USA) or Mega Man X6 (USA). Reload this script after that."
+    )
     return
 end
 
