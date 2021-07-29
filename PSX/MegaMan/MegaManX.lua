@@ -113,14 +113,14 @@ local camera = Camera:new(address.camera) -- Instantiating the Camera class.
 local enemiesGroup = GameObjectGroup:new("Enemy", address.enemy.group) -- Instantiating the GameObjectGroup class for the enemy group.
 local enemyItemsGroup = GameObjectGroup:new("Enemy Item", address.enemy.items) -- Instantiating the GameObjectGroup class for the enemy items.
 
-function DrawEnemyOptions(x, y)
+function ShowEnemyOptions(x, y)
     gui.drawText(x, y, "Enemy Options")
     enemyItemsGroup:drawToggleShowPropertyButton("Items", x, y + 20, 100)
     enemiesGroup:drawToggleShowPropertyButton("Properties", x, y + 40, 100)
     enemiesGroup:drawToggleVisibilityButton("All Enemies", x, y + 60, 100)
 end
 
-function DrawOtherOptions(x, y)
+function ShowOtherOptions(x, y)
     gui.drawText(x, y, "Other Options")
     local takeScrenshot = keyboard:isButtonDown("Take Screenshot", x, y + 20, 100)
     if takeScrenshot then
@@ -145,10 +145,10 @@ while true do
     camera:printPosition(2, 460)
 
     camera:showOptions(680, 0)
-    player:drawOptions(680, 120)
+    player:showOptions(680, 120)
 
-    DrawEnemyOptions(680, 240)
-    DrawOtherOptions(680, 320)
+    ShowEnemyOptions(680, 240)
+    ShowOtherOptions(680, 320)
 
     emu.frameadvance()
 end

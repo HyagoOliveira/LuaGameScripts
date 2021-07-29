@@ -31,7 +31,7 @@ function Player:printProperties(x, y) -- Overriding the GameObject:printProperti
     GameObject.printProperties(self, x, y)
 end
 
-function Player:drawOptions(x, y)
+function Player:showOptions(x, y)
     gui.drawText(x, y, "Player Options")
 
     local toggleLife = KeyboardInput.INSTANCE:isToggleButtonDown("Life", self.health.frozen, x, y + 20)
