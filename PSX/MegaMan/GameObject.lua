@@ -97,7 +97,7 @@ function GameObject:draw()
 end
 
 function GameObject:printProperties(x, y)
-    self.textPos = Vector2:new(x, y) * Camera.INSTANCE.screenScale
+    self.textPos = Vector2:new(x, y)
 
     self:print("HP", self.health)
     self:print("Facing", self.facing)
