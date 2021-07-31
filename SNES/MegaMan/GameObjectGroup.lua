@@ -3,7 +3,6 @@
 -- A GameObjectGroup class for Mega Man games from SNES.
 -- This class will update a group of GameObjects.
 --
-local Rect = require("Rect")
 local class = require("middleclass")
 local GameObject = require("GameObject")
 local MemoryAddress = require("MemoryAddress")
@@ -35,8 +34,7 @@ function GameObjectGroup:draw(color)
 end
 
 function GameObjectGroup:drawToggleShowPropertyButton(x, y, width, height, label)
-    local area = Rect:from(x, y, width, height)
-    local toggle = KeyboardInput.INSTANCE:isToggleButtonDown(area, label, self.showProperties)
+    local toggle = KeyboardInput.INSTANCE:isToggleButtonDown(label, self.showProperties, x, y, width, height)
     if toggle then
         self:toggleShowProperties()
     end
