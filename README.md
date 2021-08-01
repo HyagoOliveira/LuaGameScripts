@@ -1,7 +1,7 @@
 
 # Lua Game Scripts
 
-Lua Scripts for games running on **BizHawk** multi-platform emulator.
+Lua Scripts for games running on **BizHawk** multi-platform emulator. For now, only Mega Man X games are supported.
 
 ## Supported Games
 
@@ -19,29 +19,32 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator.
 - Show the Axis Aligned Bounding Box (AABB) from the Player, Enemies and its items/projectiles;
 - Show the Player properties (HP, position, speed etc);
 - Show the Enemy properties (HP, position, speed etc);
-- Free control of the Camera;
-- Free control of the Player;
-- Prevent changes from the Player life, position, gravity, speed;
-    - Freeze the Player position is a good way for collecting animation references.
-
-![alt text](/~Doc/mmx-aabb-x.png)
-
 ![alt text](/~Doc/mmx4-aabb-zero.png)
-
 *Red AABB are for damager colliders (boxes able to inflict damage).*
 
-![alt text](/~Doc/mmx5-aabb-x.jpg)
-
+![alt text](/~Doc/mmx5-aabb-x.png)
 *Green AABB are for damageable colliders (boxes able to receive damage).*
 
-![alt text](/~Doc/mmx6-aabb-x.png)
+- Free control of the Camera;
+![alt text](/~Doc/mmx4-control-camera.gif)
+
+- Free control of the Player;
+![alt text](/~Doc/mmx4-control-player.gif)
+
+- Show/Hide the HUD (only for X6 right now);
+- Show/Hide Backgrounds;
+![alt text](/~Doc/mmx6-backgrounds.gif)
+
+- Prevent changes from the Player life, position, gravity, speed;
+    - Freeze the Player position is a good way for collecting animation references.
+![alt text](/~Doc/mmx5-freeze-player-position.gif)
 
 
 ## Installation
 
-1. If you didn't already, install the [BizHawk emulator](https://github.com/TASVideos/BizHawk#installing) and setup its BIOS;
-2. Copy all contents from this repo to the `/Lua` folder inside the path where you installed the BizHawk emulator:
-    1. eg. `[BizHawk-path]/[version]/Lua`
+1. If you didn't already, install the latest [BizHawk emulator](https://github.com/TASVideos/BizHawk#installing) and setup its BIOS;
+2. Clone this repo into the `/Lua` folder where you installed the BizHawk emulator:
+    1. eg. `[BizHawk-path]/[version]/Lua/`
 
 ## Usage
 
@@ -50,7 +53,7 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator.
     2. `Mega Man X4 (USA)`, `Mega Man X5 (USA)` or `Mega Man X6 (USA)` for the PSOne.
 2. Go to Tools > Lua Console;
 3. Click on Scripts > Open Script;
-4. Go to the folder where you pasted the scripts from this repo and select:
+4. Go to the `/Lua` folder and select:
     1. `/Lua/SNES/MegaMan/MegaManX.lua` for Mega Man X, X2 or X3;
     2. `/Lua/PSX/MegaMan/MegaManX.lua` for Mega Man X4, X5 or X6;
 5. A successfully message will be outputted.
