@@ -19,24 +19,31 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator. For now, o
 - Show the Axis Aligned Bounding Box (AABB) from the Player, Enemies and its items/projectiles;
 - Show the Player properties (HP, position, speed etc);
 - Show the Enemy properties (HP, position, speed etc);
+
 ![alt text](/~Doc/mmx4-aabb-zero.png)
+
 *Red AABB are for damager colliders (boxes able to inflict damage).*
 
 ![alt text](/~Doc/mmx5-aabb-x.png)
+
 *Green AABB are for damageable colliders (boxes able to receive damage).*
 
 - Free control of the Camera;
+
 ![alt text](/~Doc/mmx4-control-camera.gif)
 
 - Free control of the Player;
+
 ![alt text](/~Doc/mmx4-control-player.gif)
 
 - Show/Hide the HUD (only for X6 right now);
 - Show/Hide Backgrounds;
+
 ![alt text](/~Doc/mmx6-backgrounds.gif)
 
 - Prevent changes from the Player life, position, gravity, speed;
     - Freeze the Player position is a good way for collecting animation references.
+    
 ![alt text](/~Doc/mmx5-freeze-player-position.gif)
 
 
