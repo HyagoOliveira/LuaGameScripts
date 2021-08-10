@@ -36,7 +36,7 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator. For now, o
 
 ![alt text](/~Doc/mmx4-control-player.gif)
 
-- Show/Hide the HUD (only for X6 right now);
+- Show/Hide the HUD;
 - Show/Hide Backgrounds;
 
 ![alt text](/~Doc/mmx6-backgrounds.gif)

@@ -15,7 +15,7 @@ local MEMORY_ADDRESS = {
     ["Mega Man X4 (USA)"] = { -- Those addresses are for the american version of Mega Man X4.
         camera = {
             base = 0x1419B0, -- camera object table.
-            hud = 0x1776A7 -- wrong
+            hud = 0x1721DF
         },
         player = {
             base = 0x1418C8, -- player object table.
@@ -41,7 +41,7 @@ local MEMORY_ADDRESS = {
     ["Mega Man X5 (USA)"] = { -- Those addresses are for the american version of Mega Man X5.
         camera = {
             base = 0x09A1F8, -- camera object table.
-            hud = 0x1776A7 -- wrong
+            hud = 0x0D1C1F
         },
         player = {
             base = 0x09A0A0, -- player object table.
