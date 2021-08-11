@@ -108,6 +108,15 @@ function KeyboardInput:isShowHideButtonDown(label, enabled, x, y, width, height)
     return self:isButtonDown(text, x, y, width, height)
 end
 
+function KeyboardInput:isEnableDisableButtonDown(label, enabled, x, y, width, height)
+    local text = "Enable " .. label
+    if enabled then
+        text = "Disable " .. label
+    end
+
+    return self:isButtonDown(text, x, y, width, height)
+end
+
 function KeyboardInput:getMousePosition()
     return Vector2:new(self.currentMouse["X"], self.currentMouse["Y"])
 end

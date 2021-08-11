@@ -22,7 +22,8 @@ local MEMORY_ADDRESS = {
             damage = {
                 base = 0x1406F8, -- If a player damage item is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 16 -- The player can have a maximum of 16 damage items.
+                max = 16, -- The player can have a maximum of 16 damage items.
+                disabled = 0x1721D1
             }
         },
         enemy = {
@@ -48,7 +49,8 @@ local MEMORY_ADDRESS = {
             damage = {
                 base = 0x098120, -- If a player damage item is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 16 -- The player can have a maximum of 16 damage items.
+                max = 16, -- The player can have a maximum of 16 damage items.
+                disabled = 0x0D1C11
             }
         },
         enemy = {
@@ -74,7 +76,8 @@ local MEMORY_ADDRESS = {
             damage = {
                 base = 0x0950A0, -- If a player damage item is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 16 -- The player can have a maximum of 16 damage items.
+                max = 16, -- The player can have a maximum of 16 damage items.
+                disabled = 0x0CCEE1
             }
         },
         enemy = {
@@ -117,7 +120,7 @@ function ShowEnemyOptions(x, y)
     gui.drawText(x, y, "Enemy Options")
     enemyItemsGroup:drawToggleShowPropertyButton("Items", x, y + 20, 100)
     enemiesGroup:drawToggleShowPropertyButton("Properties", x, y + 40, 100)
-    enemiesGroup:drawToggleVisibilityButton("All Enemies", x, y + 60, 100)
+    enemiesGroup:drawToggleDisabledButton("All Enemies", x, y + 60, 100)
 end
 
 function ShowOtherOptions(x, y)
@@ -147,8 +150,8 @@ while true do
     camera:showOptions(680, 0)
     player:showOptions(680, 120)
 
-    ShowEnemyOptions(680, 240)
-    ShowOtherOptions(680, 320)
+    ShowEnemyOptions(680, 260)
+    ShowOtherOptions(680, 340)
 
     emu.frameadvance()
 end

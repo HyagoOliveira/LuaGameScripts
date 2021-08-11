@@ -13,14 +13,12 @@ local GameObjectGroup = class('GameObjectGroup') -- Creating the GameObjectGroup
 function GameObjectGroup:initialize(name, address)
     self.name = name
     self.address = address
-    self.visible = true
     self.showProperties = false
+    self.disabled = MemoryAddress:new("Bool", address.disabled)
+end
 
-    local function show()
-        self:show()
-    end
-
-    event.onloadstate(show)
+function GameObjectGroup:update()
+    self.disabled:update()
 end
 
 function GameObjectGroup:draw()
@@ -48,10 +46,10 @@ function GameObjectGroup:drawToggleShowPropertyButton(label, x, y, width, height
     end
 end
 
-function GameObjectGroup:drawToggleVisibilityButton(label, x, y, width, height)
-    local toggle = KeyboardInput.INSTANCE:isShowHideButtonDown(label, self.visible, x, y, width, height)
+function GameObjectGroup:drawToggleDisabledButton(label, x, y, width, height)
+    local toggle = KeyboardInput.INSTANCE:isEnableDisableButtonDown(label, not self.disabled.value, x, y, width, height)
     if toggle then
-        self:toggleVisibility()
+        self:toggleDisabled()
     end
 end
 
@@ -59,31 +57,21 @@ function GameObjectGroup:toggleShowProperties()
     self.showProperties = not self.showProperties
 end
 
-function GameObjectGroup:toggleVisibility()
-    self.visible = not self.visible
-    if self.visible then
-        self:show()
+function GameObjectGroup:toggleDisabled()
+    local disable = not self.disabled.value
+    if disable then
+        self:disable()
     else
-        self:hide()
+        self:enable()
     end
 end
 
-function GameObjectGroup:show()
-    MemoryAddress:UnfreezeAddress(self.address.base, 0)
+function GameObjectGroup:enable()
+    self.disabled:write(false)
 end
 
-function GameObjectGroup:hide()
-    for i = 0, self.address.max - 1 do
-        local current = self.address.base + i * self.address.blockSize
-        local isEnabled = MemoryAddress.READ["Bool"](current)
-        if not isEnabled then
-            break
-        end
-
-        MemoryAddress:WriteRange(current, self.address.blockSize, 0)
-    end
-
-    MemoryAddress:FreezeAddress(self.address.base, 0)
+function GameObjectGroup:disable()
+    self.disabled:write(true)
 end
 
 return GameObjectGroup

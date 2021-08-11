@@ -17,6 +17,7 @@ end
 
 function Player:update() -- Overriding the GameObject:update() function.
     GameObject.update(self)
+    self.damageGroup:update()
     self.manualMover:update()
 end
 
@@ -40,7 +41,8 @@ function Player:showOptions(x, y)
     local toggleSpeed = KeyboardInput.INSTANCE:isToggleButtonDown("Speed", self.speed.frozen, x + 60, y + 40)
     local toggleVisibility = KeyboardInput.INSTANCE:isShowHideButtonDown("Player", self.visible.value, x, y + 60, 110)
     self.manualMover:drawToggleButton(x, y + 80, 110)
-    self.damageGroup:drawToggleShowPropertyButton("Damage Items", x, y + 100, 110)
+    self.damageGroup:drawToggleDisabledButton("Weapons", x, y + 100, 110)
+    self.damageGroup:drawToggleShowPropertyButton("Weapons Ppts", x, y + 120, 110)
 
     if toggleLife then
         self.health:toggleFreeze()
