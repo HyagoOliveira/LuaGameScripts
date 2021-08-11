@@ -42,7 +42,7 @@ function Player:showOptions(x, y)
     local toggleVisibility = KeyboardInput.INSTANCE:isShowHideButtonDown("Player", self.visible.value, x, y + 60, 110)
     self.manualMover:drawToggleButton(x, y + 80, 110)
     self.damageGroup:drawToggleDisabledButton("Weapons", x, y + 100, 110)
-    self.damageGroup:drawToggleShowPropertyButton("Weapons Ppts", x, y + 120, 110)
+    self.damageGroup:drawToggleShowPropertyButton("Weapons Props", x, y + 120, 110)
 
     if toggleLife then
         self.health:toggleFreeze()

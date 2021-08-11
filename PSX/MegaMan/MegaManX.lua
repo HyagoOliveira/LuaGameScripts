@@ -36,7 +36,8 @@ local MEMORY_ADDRESS = {
             items = {
                 base = 0x13F328, --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 15 -- A total of 15 items can be on screen.
+                max = 15, -- A total of 15 items can be on screen.
+                disabled = 0x1721D3
             }
         }
     },
@@ -64,7 +65,8 @@ local MEMORY_ADDRESS = {
             items = {
                 base = 0x096D98, --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 15 -- A total of 15 items can be on screen.
+                max = 15, -- A total of 15 items can be on screen.
+                disabled = 0x0D1C13
             }
         }
     },
@@ -92,7 +94,8 @@ local MEMORY_ADDRESS = {
             items = {
                 base = 0x093C98, --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 15 -- A total of 15 items can be on screen.
+                max = 15, -- A total of 15 items can be on screen.
+                disabled = 0x0CCEE3
             }
         }
     }
@@ -121,9 +124,12 @@ local enemyItemsGroup = GameObjectGroup:new("Enemy Item", address.enemy.items) -
 
 function ShowEnemyOptions(x, y)
     gui.drawText(x, y, "Enemy Options")
-    enemyItemsGroup:drawToggleShowPropertyButton("Items", x, y + 20, 100)
-    enemiesGroup:drawToggleShowPropertyButton("Properties", x, y + 40, 100)
-    enemiesGroup:drawToggleDisabledButton("Enemies", x, y + 60, 100)
+
+    enemyItemsGroup:drawToggleShowPropertyButton("Items Props", x, y + 20, 100)
+    enemyItemsGroup:drawToggleDisabledButton("Items", x, y + 40, 100)
+
+    enemiesGroup:drawToggleShowPropertyButton("Properties", x, y + 60, 100)
+    enemiesGroup:drawToggleDisabledButton("Enemies", x, y + 80, 100)
 end
 
 function ShowOtherOptions(x, y)
@@ -157,7 +163,7 @@ while true do
     player:showOptions(680, 120)
 
     ShowEnemyOptions(680, 260)
-    ShowOtherOptions(680, 340)
+    ShowOtherOptions(680, 360)
 
     emu.frameadvance()
 end
