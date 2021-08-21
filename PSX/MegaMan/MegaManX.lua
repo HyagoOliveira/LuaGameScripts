@@ -116,6 +116,7 @@ end
 
 console.log(string.format("Script successfully running for '%s'", game))
 
+local frame = 0
 local keyboard = KeyboardInput:new() -- Instantiating the KeyboardInput class.
 local player = Player:new(address.player) -- Instantiating the Player class.
 local camera = Camera:new(address.camera) -- Instantiating the Camera class.
@@ -156,7 +157,7 @@ while true do
     enemyItemsGroup:update()
     enemyItemsGroup:draw()
 
-    player:printProperties(2, 300)
+    player:printProperties(2, 280)
     camera:printPosition(2, 460)
 
     camera:showOptions(680, 0)
@@ -164,6 +165,12 @@ while true do
 
     ShowEnemyOptions(680, 260)
     ShowOtherOptions(680, 360)
+
+    if keyboard:isKey("R") then
+        frame = 0
+    end
+    gui.drawText(0, 30, frame)
+    frame = frame + 1
 
     emu.frameadvance()
 end

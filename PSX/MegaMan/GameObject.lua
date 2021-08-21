@@ -105,7 +105,8 @@ function GameObject:printProperties(x, y)
     self:print("Speed", self.speed)
     self:print("Pos", self.position)
     self:print("Last Pos", self.lastPosition)
-    -- self:print("Action", string.format("%d Sub: %d State: %d", self.action, self.subAction, self.state))
+    self.action.value = self.action.value * 2
+    self:print("Action", self.action)
     -- self:print("Anim", string.format("Index: %d Timer: %d", self.animationIndex, self.animationTimer))
 end
 
