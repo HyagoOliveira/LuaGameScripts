@@ -169,7 +169,7 @@ while true do
     if keyboard:isKey("R") then
         frame = 0
     end
-    gui.drawText(0, 30, frame)
+    gui.drawText(0, 30, frame, "white", "black", 32)
     frame = frame + 1
 
     emu.frameadvance()
