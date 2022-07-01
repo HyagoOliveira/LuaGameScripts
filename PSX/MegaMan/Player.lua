@@ -1,4 +1,3 @@
-local Rect = require("Rect")
 local Mover = require("Mover")
 local Vector2 = require("Vector2")
 local class = require("middleclass")
@@ -49,6 +48,7 @@ function Player:showOptions(x, y)
     end
     if togglePos then
         self.position:toggleFreeze()
+        self.lastPosition:toggleFreeze()
     end
     if toggleGravity then
         self.gravity:toggleFreeze()
