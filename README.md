@@ -48,7 +48,7 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator. For now, o
 
 ## Installation
 
-1. If you didn't already, install the latest [BizHawk emulator](https://github.com/TASVideos/BizHawk#installing) and setup its BIOS;
+1. If you didn't already, install the [BizHawk emulator 2.6.2 version](https://tasvideos.org/Bizhawk/ReleaseHistory#Bizhawk262) and setup its BIOS;
 2. Clone this repo into any folder;
 
 ## Usage
