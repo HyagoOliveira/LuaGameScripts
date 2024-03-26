@@ -6,6 +6,9 @@
 -- The MEMORY_ADDRESS table informs where to find all necessary variables for the games.
 -- Before use this script, make sure your display is on Pixel Pro Mode (PSX > Options > Select Pixel Pro Mode)
 --
+
+package.path = package.path .. ";../../?.lua" -- import lua classes into repository root folder
+
 local Camera = require("Camera")
 local Player = require("Player")
 local KeyboardInput = require("KeyboardInput")
