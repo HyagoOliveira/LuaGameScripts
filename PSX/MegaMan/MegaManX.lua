@@ -115,6 +115,8 @@ if not hasAddress then
 end
 
 console.log(string.format("Script successfully running for '%s'", game))
+console.log("Press R to reset frame.")
+console.log("Press T to Take a Screenshot.")
 
 local frame = 0
 local keyboard = KeyboardInput:new() -- Instantiating the KeyboardInput class.
@@ -122,6 +124,15 @@ local player = Player:new(address.player) -- Instantiating the Player class.
 local camera = Camera:new(address.camera) -- Instantiating the Camera class.
 local enemiesGroup = GameObjectGroup:new("Enemy", address.enemy.group) -- Instantiating the GameObjectGroup class for the enemy group.
 local enemyItemsGroup = GameObjectGroup:new("Enemy Item", address.enemy.items) -- Instantiating the GameObjectGroup class for the enemy items.
+
+function TakeScreenshot(advanceFrame)
+    gui.clearGraphics()
+    gui.cleartext()
+    if advanceFrame then
+        emu.frameadvance()
+    end
+    client.screenshot()
+end
 
 function ShowEnemyOptions(x, y)
     gui.drawText(x, y, "Enemy Options")
@@ -137,10 +148,7 @@ function ShowOtherOptions(x, y)
     gui.drawText(x, y, "Other Options")
     local takeScrenshot = keyboard:isButtonDown("Take Screenshot", x, y + 20, 100)
     if takeScrenshot then
-        gui.clearGraphics()
-        gui.cleartext()
-        emu.frameadvance()
-        client.screenshot()
+        TakeScreenshot(true)
     end
 end
 
@@ -167,8 +175,11 @@ while true do
     ShowOtherOptions(680, 360)
 
     if keyboard:isKey("R") then
-        frame = 0
+        frame = 0    
+    elseif keyboard:isKey("T") then
+        TakeScreenshot(false)
     end
+
     gui.drawText(0, 30, frame, "white", "black", 32, nill, "bold")
     frame = frame + 1
 
