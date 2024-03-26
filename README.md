@@ -1,4 +1,3 @@
-
 # Lua Game Scripts
 
 Lua Scripts for games running on **BizHawk** multi-platform emulator. For now, only Mega Man X games are supported.
@@ -28,11 +27,11 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator. For now, o
 
 *Green AABB are for damageable colliders (boxes able to receive damage).*
 
-- Free control of the Camera;
+- Free Camera control;
 
 ![alt text](/~Doc/mmx4-control-camera.gif)
 
-- Free control of the Player;
+- Free Player control;
 
 ![alt text](/~Doc/mmx4-control-player.gif)
 
@@ -66,12 +65,14 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator. For now, o
 5. A successfully message will be outputted.
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ---
 
 **Hyago Oliveira**
 
+[GitHub](https://github.com/HyagoOliveira) -
 [BitBucket](https://bitbucket.org/HyagoGow/) -
 [LinkedIn](https://www.linkedin.com/in/hyago-oliveira/) -
 <hyagogow@gmail.com>
