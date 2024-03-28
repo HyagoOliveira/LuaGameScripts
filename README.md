@@ -58,9 +58,9 @@ Lua Scripts for games running on **BizHawk** multi-platform emulator. For now, o
     2. `Mega Man X4 (USA)`, `Mega Man X5 (USA)` or `Mega Man X6 (USA)` for the PSOne.
 2. Go to Tools > Lua Console;
 3. Click on Scripts > Open Script;
-4. Go to the `/Lua` folder and select:
-    1. `/Lua/SNES/MegaMan/MegaManX.lua` for Mega Man X, X2 or X3;
-    2. `/Lua/PSX/MegaMan/MegaManX.lua` for Mega Man X4, X5 or X6;
+4. Go to the folder where you've downloaded this repo and select:
+    1. `/SNES/MegaMan/MegaManX.lua` for Mega Man X, X2 or X3;
+    2. `/PSX/MegaMan/MegaManX.lua` for Mega Man X4, X5 or X6;
 5. A successfully message will be outputted.
 
 ## License
