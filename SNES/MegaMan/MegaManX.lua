@@ -6,6 +6,9 @@
 -- The MEMORY_ADDRESS table informs where to find all necessary variables.
 -- Set the emulator View > Windows Size > 3x for better resolution.
 --
+
+package.path = package.path .. ";../../?.lua" -- import lua classes into repository root folder
+
 local Camera = require("Camera") -- Importing the Camera class.
 local Vector2 = require("Vector2") -- Importing the Vector2 class.
 local GameObject = require("GameObject") -- Importing the GameObject class.
