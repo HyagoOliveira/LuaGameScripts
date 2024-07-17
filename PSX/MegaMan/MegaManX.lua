@@ -174,8 +174,8 @@ while true do
     camera:showOptions(680, 0)
     player:showOptions(680, 120)
 
-    ShowEnemyOptions(680, 260)
-    ShowOtherOptions(680, 360)
+    ShowEnemyOptions(680, 280)
+    ShowOtherOptions(680, 380)
 
     if keyboard:isKey("R") then
         frame = 0    
