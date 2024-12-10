@@ -12,92 +12,93 @@ package.path = package.path .. ";../../?.lua" -- import lua classes into reposit
 local Camera = require("Camera")
 local Player = require("Player")
 local KeyboardInput = require("KeyboardInput")
+local EnemyGroup = require("EnemyGroup")
 local GameObjectGroup = require("GameObjectGroup")
 
 local MEMORY_ADDRESS = {
     ["Mega Man X4 (USA)"] = { -- Those addresses are for the american version of Mega Man X4.
         camera = {
-            base = 0x1419B0, -- camera object table.
+            base = 0x1419B0,  -- camera object table.
             hud = 0x1721DF
         },
         player = {
-            base = 0x1418C8, -- player object table.
+            base = 0x1418C8,      -- player object table.
             damage = {
-                base = 0x1406F8, -- If a player damage item is present on screen, it'll start at this address.
+                base = 0x1406F8,  -- If a player damage item is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 16, -- The player can have a maximum of 16 damage items.
+                max = 16,         -- The player can have a maximum of 16 damage items.
                 disabled = 0x1721D1
             }
         },
         enemy = {
             group = {
-                base = 0x13BED0, -- If a enemy is present on screen, it'll start at this address.
+                base = 0x13BED0,  -- If a enemy is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each enemy has 156 (0x9C) bytes loaded on memory.
-                max = 15, -- A total of 15 enemies can be on screen.
+                max = 15,         -- A total of 15 enemies can be on screen.
                 disabled = 0x1721D2
             },
             items = {
-                base = 0x13F328, --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
+                base = 0x13F328,  --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 15, -- A total of 15 items can be on screen.
+                max = 15,         -- A total of 15 items can be on screen.
                 disabled = 0x1721D3
             }
         }
     },
     ["Mega Man X5 (USA)"] = { -- Those addresses are for the american version of Mega Man X5.
         camera = {
-            base = 0x09A1F8, -- camera object table.
+            base = 0x09A1F8,  -- camera object table.
             hud = 0x0D1C1F
         },
         player = {
-            base = 0x09A0A0, -- player object table.
+            base = 0x09A0A0,      -- player object table.
             damage = {
-                base = 0x098120, -- If a player damage item is present on screen, it'll start at this address.
+                base = 0x098120,  -- If a player damage item is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 16, -- The player can have a maximum of 16 damage items.
+                max = 16,         -- The player can have a maximum of 16 damage items.
                 disabled = 0x0D1C11
             }
         },
         enemy = {
             group = {
-                base = 0x092090, -- If a enemy is present on screen, it'll start at this address.
+                base = 0x092090,  -- If a enemy is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each enemy has 156 (0x9C) bytes loaded on memory.
-                max = 15, -- A total of 15 enemies can be on screen.
+                max = 15,         -- A total of 15 enemies can be on screen.
                 disabled = 0x0D1C12
             },
             items = {
-                base = 0x096D98, --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
+                base = 0x096D98,  --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 15, -- A total of 15 items can be on screen.
+                max = 15,         -- A total of 15 items can be on screen.
                 disabled = 0x0D1C13
             }
         }
     },
     ["Mega Man X6 (USA)"] = { -- Those addresses are for the american version of Mega Man X6.
         camera = {
-            base = 0x0971F8, -- camera object table
+            base = 0x0971F8,  -- camera object table
             hud = 0x0CCEEF
         },
         player = {
-            base = 0x0970A0, -- player object table
+            base = 0x0970A0,      -- player object table
             damage = {
-                base = 0x0950A0, -- If a player damage item is present on screen, it'll start at this address.
+                base = 0x0950A0,  -- If a player damage item is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 16, -- The player can have a maximum of 16 damage items.
+                max = 16,         -- The player can have a maximum of 16 damage items.
                 disabled = 0x0CCEE1
             }
         },
         enemy = {
             group = {
-                base = 0x08EF48, -- If a enemy is present on screen, it'll start at this address.
+                base = 0x08EF48,  -- If a enemy is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each enemy has 156 (0x9C) bytes loaded on memory.
-                max = 15, -- A total of 15 enemies can be on screen.
+                max = 15,         -- A total of 15 enemies can be on screen.
                 disabled = 0x0CCEE2
             },
             items = {
-                base = 0x093C98, --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
+                base = 0x093C98,  --  If an enemy item (bullet, weapon, life refil etc) is present on screen, it'll start at this address.
                 blockSize = 0x9C, -- Each item has 156 (0x9C) bytes loaded on memory.
-                max = 15, -- A total of 15 items can be on screen.
+                max = 15,         -- A total of 15 items can be on screen.
                 disabled = 0x0CCEE3
             }
         }
@@ -122,10 +123,10 @@ console.log("Press R to reset frame.")
 console.log("Press T to Take a Screenshot.")
 
 local frame = 0
-local keyboard = KeyboardInput:new() -- Instantiating the KeyboardInput class.
-local player = Player:new(address.player) -- Instantiating the Player class.
-local camera = Camera:new(address.camera) -- Instantiating the Camera class.
-local enemiesGroup = GameObjectGroup:new("Enemy", address.enemy.group) -- Instantiating the GameObjectGroup class for the enemy group.
+local keyboard = KeyboardInput:new()                                           -- Instantiating the KeyboardInput class.
+local player = Player:new(address.player)                                      -- Instantiating the Player class.
+local camera = Camera:new(address.camera)                                      -- Instantiating the Camera class.
+local enemiesGroup = EnemyGroup:new(address.enemy.group)                       -- Instantiating the GameObjectGroup class for the enemy group.
 local enemyItemsGroup = GameObjectGroup:new("Enemy Item", address.enemy.items) -- Instantiating the GameObjectGroup class for the enemy items.
 
 function TakeScreenshot(advanceFrame)
@@ -145,6 +146,7 @@ function ShowEnemyOptions(x, y)
 
     enemiesGroup:drawToggleShowPropertyButton("Properties", x, y + 60, 100)
     enemiesGroup:drawToggleDisabledButton("Enemies", x, y + 80, 100)
+    enemiesGroup:drawToggleFrozenPositionButton(x, y + 100, 100)
 end
 
 function ShowOtherOptions(x, y)
@@ -175,10 +177,10 @@ while true do
     player:showOptions(680, 120)
 
     ShowEnemyOptions(680, 280)
-    ShowOtherOptions(680, 380)
+    ShowOtherOptions(680, 420)
 
     if keyboard:isKey("R") then
-        frame = 0    
+        frame = 0
     elseif keyboard:isKey("T") then
         TakeScreenshot(false)
     end
