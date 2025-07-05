@@ -186,6 +186,7 @@ while true do
     end
 
     gui.drawText(0, 30, frame, "white", "black", 32, nill, "bold")
+    gui.drawText(160, 2, "R: Reset Frame\tT: Take Screenshot\tF: Frame Advance")
     frame = frame + 1
 
     emu.frameadvance()
